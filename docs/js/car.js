@@ -15,6 +15,14 @@ async function writeBrands () {
 
 
  function writeModels () {
+ var Importer = require('elastic-import')
+var importer = new Importer({
+  host: 'localhost:9200',
+  index: 'myindex',
+  type: 'mytype',
+  log: 'info',
+  warnErrors: false
+})
   var brands = JSON.parse(fs.readFileSync("brands.json"));
   brands.forEach(function(brand) {
 
@@ -25,6 +33,7 @@ async function writeBrands () {
   		console.log(models);
 
   		if (models.length > 0){
+			importer.import(models, function (err, response) { })
   			fs.appendFile('allmodels.json', JSON.stringify(models), function(err){console.log('File successfully written! - Check your project directory for the output.json file');})
   		}
     }
