@@ -2,7 +2,7 @@ var express = require('express');
 var app     = express();
 var fs      = require('fs');
 
-app.get('/test', function(req, res){
+app.get('/populate', function(req, res){
 
 const {getBrands} = require('node-car-api');
 
@@ -18,8 +18,8 @@ async function writeBrands () {
  var Importer = require('elastic-import')
 var importer = new Importer({
   host: 'localhost:9200',
-  index: 'myindex',
-  type: 'mytype',
+  index: 'cars',
+  type: 'cars',
   log: 'info',
   warnErrors: false
 })
@@ -47,7 +47,7 @@ var importer = new Importer({
 
 
 
-//writeBrands();
+writeBrands();
 setTimeout(writeModels, 3000);
 
 

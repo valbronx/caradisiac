@@ -16,8 +16,8 @@ function search()
 {
   //Only the first one
   return client.search({
-      index: "myindex",
-      type: 'mytype',
+      index: "cars",
+      type: 'cars',
       body: {
          sort: [{ "volume": { "order": "desc" } }],
          size: 1,
